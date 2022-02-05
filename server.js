@@ -5,8 +5,12 @@ const articleRouter = require('./routes/articles')
 const methodOverride = require('method-override')
 const app = express()
 
-mongoose.connect('mongodb+srv://blog-admin-1:<4uAorCbA1FSbRJPD>@cluster0.rwz2j.mongodb.net/blog?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://blogadmin:mkiPdN9mPB6xSR2R@ethancluster.rwz2j.mongodb.net/blog?retryWrites=true&w=majority', {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
+})
+
+mongoose.connections.concat('connected', () => {
+  console.log('Mongoose is lit')
 })
 
 app.set('view engine', 'ejs')
@@ -19,3 +23,5 @@ app.get('/', async (req, res) => {
 })
 
 app.use('/articles', articleRouter)
+
+app.listen(8000)
