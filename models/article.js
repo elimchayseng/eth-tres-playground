@@ -3,6 +3,7 @@ const marked = require('marked')
 const slugify = require('slugify')
 const createDomPurify = require('dompurify')
 const { JSDOM } = require('jsdom')
+const { MongoClient } = require("mongodb");
 const dompurify = createDomPurify(new JSDOM().window)
 
 const articleSchema = new mongoose.Schema({
