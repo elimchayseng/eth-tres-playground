@@ -5,6 +5,8 @@ const articleRouter = require("./routes/articles");
 const methodOverride = require("method-override");
 const dotenv = require("dotenv");
 const app = express();
+dotenv.config();
+
 
 const mongoConnectionString = process.env.MONGO_DB_URL
 
