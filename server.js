@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const Article = require("./models/article");
 const articleRouter = require("./routes/articles");
 const methodOverride = require("method-override");
-const dotenv = require("dotenv");
+// const dotenv = require("dotenv");
 const app = express();
-dotenv.config();
+// dotenv.config(); //loads .env to environment variables //taken care of by heroku
 
 
-const mongoConnectionString = process.env.MONGO_DB_URL
+const mongoConnectionString = process.env.MONGODB_URI
 
 mongoose.connect(mongoConnectionString,{
     useNewUrlParser: true,
