@@ -26,10 +26,12 @@ const getLastActivity = async (req, res) => {
         },
     };
 
-    let response = await axios(options);
-
-    if (response.status == 200) {
+    try {
+        let response = await axios(options);
         return response.data
+    } catch (e) {
+        console.log(e);
+        return []
     }
 
     return []
