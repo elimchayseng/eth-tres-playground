@@ -7,15 +7,17 @@ const methodOverride = require("method-override");
 const app = express();
 // dotenv.config(); //loads .env to environment variables //taken care of by heroku
 
+const mongoConnectionString = process.env.MONGODB_URI;
 
-const mongoConnectionString = process.env.MONGODB_URI
-
-mongoose.connect(mongoConnectionString,{
+try {
+  mongoose.connect(mongoConnectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-  }
-);
+  });
+} catch (e) {
+  console.error(e);
+}
 
 mongoose.connections.concat("connected", () => {
   console.log("Mongoose is lit");
