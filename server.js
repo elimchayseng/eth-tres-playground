@@ -15,12 +15,11 @@ const mongoConnectionString = process.env.MONGODB_URI;
 // MONGODB_URI -- .env correct variable
 
 try {
-  mongoose.connect(mongoConnectionString, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  });
-
+    mongoose.connect(mongoConnectionString, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+    });
 } catch (e) {
     console.error(e);
 }
