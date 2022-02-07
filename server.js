@@ -15,11 +15,12 @@ const mongoConnectionString = process.env.MONGODB_URI;
 // MONGODB_URI -- .env correct variable
 
 try {
-    mongoose.connect('mongodb://localhost:27017/?readPreference=primary&ssl=false', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-    });
+  mongoose.connect(mongoConnectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  });
+
 } catch (e) {
     console.error(e);
 }
