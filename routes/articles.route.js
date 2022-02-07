@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
     const articles = await Article.find().sort({ createdAt: "desc" });
-    res.render("articles/index", { articles: articles });
+    res.render('articles/index', { articles: articles });
 });
 
 router.get('/new', (req, res) => {
@@ -46,7 +46,11 @@ function saveArticleAndRedirect(path) {
         article.markdown = req.body.markdown
         try {
             article = await article.save()
+<<<<<<< HEAD
             res.redirect(`articles/${article.slug}`)
+=======
+            res.redirect(`/articles/${article.slug}`)
+>>>>>>> origin/dev
         } catch (e) {
             res.render(`articles/${path}`, { article: article })
         }
