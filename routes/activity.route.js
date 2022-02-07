@@ -5,14 +5,11 @@ const router = express.Router()
 const stravaUrl = process.env.STRAVA_BASE_URL
 const stravaAPIKey = process.env.STRAVA_KEY
 
-// router.get('/', async (req, res) => {
-//     const activity = await getLastActivity()
-//     res.render('activites/activity', { activity: activity })
-// })
+router.get('/', async (req, res) => {
+    const activity = await getLastActivity()
+    res.render('activities/activity', { activity: activity })
+})
 
-router.get("/", async (req, res) => {
-    res.render("activities/activity");
-});
 
 function getLastActivity() {
     return async (req, res) => {
