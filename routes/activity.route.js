@@ -6,28 +6,34 @@ const stravaUrl = process.env.STRAVA_BASE_URL
 const stravaAPIKey = process.env.STRAVA_KEY
 
 router.get('/', async (req, res) => {
-    const activity = await getLastActivity()
-    res.render('activities/activity', { activity: activity })
+    const activities = await getLastActivity(req, res)
+    res.render('activities/activity', {
+        activityName: activities[0].name,
+        activityType: activities[0].type
+    })
 })
 
 
-function getLastActivity() {
-    return async (req, res) => {
-        const options = {
-            method: "get",
-            url: stravaUrl,
-            headers: {
-                Authorization: "Bearer " + stravaAPIKey,
-            },
-            params: {
-                per_page: 1,
-            },
-        };
+const getLastActivity = async (req, res) => {
+    const options = {
+        method: "get",
+        url: stravaUrl,
+        headers: {
+            Authorization: "Bearer " + stravaAPIKey,
+        },
+        params: {
+            per_page: 1,
+        },
+    };
 
-        let response = await axios(options);
+    let response = await axios(options);
 
-        return res.status(200).json(response.data);
+    if (response.status == 200) {
+        return response.data
     }
+
+    return []
 }
+
 
 module.exports = router;
