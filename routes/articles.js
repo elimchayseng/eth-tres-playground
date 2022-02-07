@@ -2,6 +2,8 @@ const express = require('express')
 const Article = require('./../models/article')
 const router = express.Router()
 
+module.exports = router
+
 router.get('/new', (req, res) => {
   res.render('articles/new', { article: new Article() })
 })
@@ -46,5 +48,3 @@ function saveArticleAndRedirect(path) {
     }
   }
 }
-
-module.exports = router

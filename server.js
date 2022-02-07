@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Article = require("./models/article");
 const articleRouter = require("./routes/articles");
+const activityRouter = require("./routes/activity");
 const methodOverride = require("method-override");
 // const dotenv = require("dotenv");
 const app = express();
@@ -11,7 +12,7 @@ const mongoConnectionString = process.env.MONGODB_URI;
 // MONGODB_URI -- .env correct variable
 
 try {
-  mongoose.connect(mongoConnectionString, {
+  mongoose.connect('mongodb://localhost:27017/?readPreference=primary&ssl=false', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -19,10 +20,6 @@ try {
 } catch (e) {
   console.error(e);
 }
-
-mongoose.connections.concat("connected", () => {
-  console.log("Mongoose is lit");
-});
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
@@ -34,9 +31,8 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/articles", articleRouter);
+app.use("/activity", activityRouter);
 
-const activity = require("./activity");
 
-app.get("/activity", activity.getLastActivity);
 
 app.listen(process.env.PORT || 8000);
