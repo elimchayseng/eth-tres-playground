@@ -7,10 +7,10 @@ const methodOverride = require("method-override");
 const app = express();
 // dotenv.config(); //loads .env to environment variables //taken care of by heroku
 
-const mongoConnectionString = process.env.MONGO_DB_URL;
+// const mongoConnectionString = process.env.MONGO_DB_URL;
 
 try {
-  mongoose.connect(mongoConnectionString, {
+  mongoose.connect('mongodb+srv://blogadmin:mkiPdN9mPB6xSR2R@ethancluster.rwz2j.mongodb.net/blog?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
