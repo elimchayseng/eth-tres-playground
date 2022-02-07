@@ -1,10 +1,15 @@
 const express = require('express');
 const activityRoute = require('./activity.route');
 const articlesRoute = require('./articles.route');
+const homeRoute = require('./home.route');
 
 const router = express.Router();
 
 const defaultRoutes = [
+    {
+        path: '/',
+        route: homeRoute,
+    },
     {
         path: '/activity',
         route: activityRoute,
